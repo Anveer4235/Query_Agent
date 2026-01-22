@@ -123,5 +123,97 @@ Answer Generator Agent
    ↓
 Final Policy-Grounded Answer
 
+🎬 Getting Started
+📝 Prerequisites
 
+Python >= 3.10 and < 3.14
+
+OpenAI API key
+
+UV
+ for dependency management
+
+📦 Installation
+pip install uv
+crewai install
+
+🔑 Environment Setup
+
+Create a .env file in the project root:
+
+OPENAI_API_KEY=your_openai_api_key_here
+
+📄 Ingest Policy Documents
+
+Before running the agents, ingest the company policy PDF:
+
+python ingest_policies.py
+
+
+This step:
+
+Loads the PDF
+
+Splits text into chunks
+
+Generates embeddings
+
+Persists them in ChromaDB
+
+This step is required only once (or whenever documents change).
+
+▶️ Running the Project
+
+To start the AgentsQueries Crew:
+
+crewai run
+
+
+or
+
+uv run run_crew
+
+📁 Project Structure
+agents_queries/
+│
+├── src/agents_queries/
+│   ├── crew.py                 # Crew and agent definitions
+│   ├── main.py                 # Entry point
+│   ├── tools/
+│   │   ├── custom_tool.py      # PolicyRetrieverTool
+│   │   └── __init__.py
+│   ├── config/
+│   │   ├── agents.yaml         # Agent configurations
+│   │   └── tasks.yaml          # Task definitions
+│
+├── ingest_policies.py          # PDF ingestion & vector creation
+├── knowledge/vectorstore/      # Persistent Chroma storage
+├── .env
+└── README.md
+
+🔧 Customization & Extensions
+
+You can extend this project by:
+
+Activating the Query Understanding Agent
+
+Adding citations and page numbers to answers
+
+Supporting multiple policy documents
+
+Adding memory and follow-up questions
+
+Building a UI (Streamlit / FastAPI / Web app)
+
+📚 Learning Outcomes
+
+This project demonstrates:
+
+How to build a RAG system using PDFs
+
+How to design multi-agent workflows with CrewAI
+
+How to create and integrate custom tools
+
+How vector databases help reduce hallucinations
 
